@@ -8,13 +8,12 @@ const productApi = api.injectEndpoints({
     singleProduct: builder.query({
       query: (id) => `/product/${id}`,
     }),
-    postProduct: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `/product/${id}`,
+    addProduct: builder.mutation<IProduct, Partial<IProduct>>({
+      query: (newProduct) => ({
+        url: '/product',
         method: 'POST',
-        body: data,
+        body: newProduct,
       }),
-    }),
     postComment: builder.mutation({
       query: ({ id, data }) => ({
         url: `/comment/${id}`,
